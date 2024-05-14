@@ -1,12 +1,22 @@
-template <int SZ>
 struct DSU
 {
-    int par[SZ], sz[SZ];
-    DSU()
+    vector<int> par, sz;
+    DSU(int n)
     {
-        forn(0, SZ)
+        par.resize(n + 1);
+        sz.resize(n + 1);
+        forn(0, n)
         {
             par[i] = i,
+            sz[i] = 1;
+        }
+    }
+
+    void clear(int n)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            par[i] = i;
             sz[i] = 1;
         }
     }

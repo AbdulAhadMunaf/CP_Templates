@@ -74,6 +74,18 @@ int binpow(int a, int b)
     return res;
 }
 
+int inv(int a)
+{
+    return a <= 1 ? a : mod - (long long)(mod / a) * inv(mod % a) % mod;
+}
+
+// Inverse for 1-m
+inv[1] = 1;
+for (int a = 2; a < m; ++a)
+{
+    inv[a] = m - (long long)(m / a) * inv[m % a] % m;
+}
+
 void preprocess()
 {
     fac[0] = inv_fac[0] = 1;
@@ -85,14 +97,12 @@ void preprocess()
 }
 int NCR(int n, int r)
 {
-if (r > n)
-{
-    return 0;
-}
+    if (r > n)
+    {
+        return 0;
+    }
     return (((fac[n] * inv_fac[n - r]) % mod) * inv_fac[r]) % mod;
 }
-
-
 
 // For linear Diophantine eqs
 
@@ -150,7 +160,10 @@ vector<int> getdivs(int n)
         if (n % i == 0)
         {
             divs.push_back(i);
-            divs.push_back(n / i);
+            if (i != n / i)
+            {
+                divs.push_back(n / i);
+            }
         }
     }
 

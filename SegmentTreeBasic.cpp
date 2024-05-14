@@ -1,6 +1,7 @@
 class segmentTree
 {
 private:
+    // change
     struct item
     {
         int v;
@@ -8,13 +9,17 @@ private:
 
     int size;
     std::vector<item> store;
+
+    // change
     item NEUTRAL_ELEMENT = {(int)1e10};
 
+    // change
     item merge(item a, item b)
     {
         return {min(a.v, b.v)};
     }
 
+    // change
     item single(int v)
     {
         return {v};
@@ -95,16 +100,16 @@ public:
         }
         store.resize(2 * size);
     }
-
+    
     void build(std::vector<int> &a)
     {
         build(a, 0, 0, size);
     }
 
-    int get(int l, int r)
+    item get(int l, int r)
     {
         r++;
-        return get(l, r, 0, 0, size).v;
+        return get(l, r, 0, 0, size);
     }
 
     void set(int i, int v)
